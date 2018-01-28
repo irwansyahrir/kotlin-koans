@@ -18,6 +18,11 @@ fun todoTask10(): Nothing = TODO(
 
 fun task10(): List<Int> {
     val arrayList = arrayListOf(1, 5, 2)
-    Collections.sort(arrayList, { one, two -> two - one })
+    var comparator = object : Comparator<Int> {
+        override fun compare(x: Int, y: Int): Int {
+            return y - x
+        }
+    }
+    Collections.sort(arrayList, comparator)
     return arrayList
 }
