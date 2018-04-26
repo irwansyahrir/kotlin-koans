@@ -5,6 +5,10 @@ import java.util.*
 
 fun MyDate.nextDay() = addTimeIntervals(DAY, 1)
 
+fun MyDate.nextYear() = addTimeIntervals(YEAR, 1)
+
+fun MyDate.nextWeek() = addTimeIntervals(WEEK, 1)
+
 fun MyDate.addTimeIntervals(timeInterval: TimeInterval, number: Int): MyDate {
     val c = Calendar.getInstance()
     c.set(year, month, dayOfMonth)

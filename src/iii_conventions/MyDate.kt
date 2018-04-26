@@ -10,6 +10,22 @@ data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int): Comparabl
     operator fun inc(): MyDate {
         return this.nextDay()
     }
+
+    operator fun plus(timeInterval: TimeInterval) = when (timeInterval) {
+        TimeInterval.YEAR -> this.nextYear()
+        TimeInterval.WEEK -> this.nextWeek()
+        else -> this.nextDay()
+    }
+
+    operator fun plus(repeated : RepeatedTimeInterval) = when (repeated.interval) {
+        TimeInterval.YEAR -> this.addTimeIntervals(repeated)
+        TimeInterval.WEEK -> this.addTimeIntervals(repeated)
+        else -> this.addTimeIntervals(repeated)
+    }
+
+    private fun addTimeIntervals(repeated: RepeatedTimeInterval) : MyDate {
+        return this.addTimeIntervals(repeated.interval, repeated.times)
+    }
 }
 
 operator fun MyDate.rangeTo(other: MyDate): DateRange {
@@ -19,8 +35,14 @@ operator fun MyDate.rangeTo(other: MyDate): DateRange {
 enum class TimeInterval {
     DAY,
     WEEK,
-    YEAR
+    YEAR;
+
+    operator fun times(i: Int): RepeatedTimeInterval {
+        return RepeatedTimeInterval(this, i)
+    }
 }
+
+data class RepeatedTimeInterval(val interval: TimeInterval, val times: Int)
 
 class DateRange(val start: MyDate, val endInclusive: MyDate) {
     operator fun contains(d: MyDate): Boolean {
