@@ -26,3 +26,7 @@ fun todoTask2(): Nothing = TODO(
 fun task2(collection: Collection<Int>): String {
     return collection.joinToString(prefix = "{", postfix = "}")
 }
+
+fun joinToStringWithParams(collection: Collection<Int>, prefix: String, postfix: String): String {
+    return collection.joinToString(prefix = prefix, postfix = postfix)
+}
