@@ -24,3 +24,11 @@ fun todoTask4(collection: Collection<Int>): Nothing = TODO(
 fun task4(collection: Collection<Int>): Boolean {
     return collection.any({it % 42 == 0})
 }
+
+fun sum(x: Int, y: Int) : Int {
+    return x + y
+}
+
+fun square(x: Int): Int {
+    return x * x
+}
