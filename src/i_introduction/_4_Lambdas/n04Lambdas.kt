@@ -22,4 +22,19 @@ fun todoTask4(collection: Collection<Int>): Nothing = TODO(
     documentation = doc4(),
     references = { JavaCode4().task4(collection) })
 
-fun task4(collection: Collection<Int>): Boolean = todoTask4(collection)
+
+
+fun task4(collection: Collection<Int>): Boolean {
+    return collection.any(isEven)
+}
+
+fun isAllEven(collection: Collection<Int>): Boolean {
+    return collection.all(isEven)
+}
+
+fun square(collection: Collection<Int>): Collection<Int> {
+    return collection.map(square)
+}
+
+val square: (Int) -> Int = { x -> x * x}
+val isEven: (Int) -> Boolean = { x -> x % 2 == 0}
