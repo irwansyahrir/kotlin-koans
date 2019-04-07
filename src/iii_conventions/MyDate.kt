@@ -23,3 +23,7 @@ enum class TimeInterval {
 }
 
 class DateRange(val start: MyDate, val endInclusive: MyDate)
+
+operator fun DateRange.contains(d: MyDate): Boolean {
+    return this.start <= d && d <= this.endInclusive
+}
