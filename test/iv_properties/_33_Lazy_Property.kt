@@ -25,9 +25,15 @@ class _33_Lazy_Property {
     fun `initialized without initial value`() {
         var initialized = 0
         val lazyProperty = LazyProperty {initialized++}
-        val result = lazyProperty.lazy
+        var result = lazyProperty.lazy
         assertEquals( "Use the initial value of the class", 0, result)
-        lazyProperty.lazy
+
+        result += 100
+        assertEquals( "Use the initial value of the class", 100, result)
+
+        val anotherResult = lazyProperty.lazy  // buat apa ya ini?
+        assertEquals("What will be here?", 0, anotherResult)
+
         assertEquals("Lazy property should be initialized once", 1, initialized)
     }
 }
